@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -29,7 +29,7 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
 #map {
   height: 100vh;
 }
@@ -38,4 +38,89 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+/* ---- SideBar ---- */
+.sidebar {
+  top: 43px;
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+  z-index: 10;
+  opacity: 0.9;
+}
+
+.sidebar.close {
+  -webkit-transform: translate(-300px, 0);
+  transform: translate(-300px, 0);
+  transition: transform 0.3s ease;
+  /* z-index: 10; */
+}
+
+.sidebar-header h3 {
+  font-size: 22px;
+  color: rgb(100, 100, 100);
+}
+
+.sidebar ul {
+  color: rgb(77, 77, 77);
+  font-size: 0.7em;
+}
+
+.sidebar li {
+  line-height: 24px;
+  border-bottom: 1px solid rgb(231, 231, 231);
+}
+
+.sidebar-close i {
+  color: rgb(77, 77, 77);
+}
+.sidebar-close i:hover {
+  color: rgb(158, 158, 158);
+}
+
+/* ---- NavBar ---- */
+
+@import "https://fonts.googleapis.com/css?family=Notable";
+@import "https://fonts.googleapis.com/css?family=Poppins";
+
+.navbar-brand {
+  font-family: Notable, sans-serif;
+  letter-spacing: 0.1em;
+  font-size: 1em !important;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+/* @media screen and (max-width: 549px) { */
+.navbar-toggler-icon {
+  display: inline-block;
+  left: 0;
+}
+
+.navbar-toggler-icon:hover {
+  color: #fff !important;
+}
+
+@media screen and (max-width: 560px) {
+  .navbar-brand {
+    font-size: 0.9em !important;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .navbar-brand {
+    font-family: Poppins, sans-serif;
+    letter-spacing: 0;
+    font-size: 0.9em !important;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .navbar-brand {
+    font-size: 0.8em !important;
+  }
 }
