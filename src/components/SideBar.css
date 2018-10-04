@@ -1,0 +1,39 @@
+.sidebar {
+  top: 43px;
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+  z-index: 10;
+  opacity: 0.9;
+}
+
+.sidebar.close {
+  -webkit-transform: translate(-300px, 0);
+  transform: translate(-300px, 0);
+  transition: transform 0.3s ease;
+  /* z-index: 10; */
+}
+
+.sidebar-header h3 {
+  font-size: 22px;
+  color: rgb(100, 100, 100);
+}
+
+.sidebar ul {
+  color: rgb(77, 77, 77);
+  font-size: 0.7em;
+}
+
+.sidebar li {
+  line-height: 24px;
+  border-bottom: 1px solid rgb(231, 231, 231);
+}
+
+.sidebar-close i {
+  color: rgb(77, 77, 77);
+}
+.sidebar-close i:hover {
+  color: rgb(158, 158, 158);
+}
