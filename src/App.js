@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 
 import SideBar from "./components/SideBar";
+import NavBar from "./components/NavBar";
 import Map from "./components/Map";
 
 import axios from "axios";
@@ -86,21 +87,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-dark fixed-top bg-info">
-          <div className="navbar-header">
-            <button
-              className="btn btn-info mr-3 p-2"
-              onClick={e => {
-                const sidebar = document.querySelector(".sidebar");
-                e.preventDefault();
-                sidebar.classList.toggle("close");
-              }}
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
-            <h3 className="navbar-brand pt-1">New York City Jazz Clubs</h3>
-          </div>
-        </nav>
+        <NavBar />
         <main>
           <SideBar />
           <Map />
