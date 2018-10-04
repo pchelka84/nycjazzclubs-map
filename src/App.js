@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import SideBar from "./components/SideBar";
 import NavBar from "./components/NavBar";
 import Map from "./components/Map";
 
@@ -88,10 +87,7 @@ class App extends Component {
     return (
       <div>
         <NavBar />
-        <main>
-          <SideBar />
-          <Map />
-        </main>
+        <Map />
       </div>
     );
   }

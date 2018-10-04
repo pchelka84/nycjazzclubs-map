@@ -5,7 +5,12 @@ import SideBar from "./SideBar";
 
 class Map extends Component {
   render() {
-    return <div id="map" />;
+    return (
+      <main>
+        <SideBar />
+        <div id="map" />
+      </main>
+    );
   }
 }
 
