@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 
 import SideBar from "./components/SideBar";
+import Map from "./components/Map";
 
 import axios from "axios";
 
@@ -102,7 +103,7 @@ class App extends Component {
         </nav>
         <main>
           <SideBar />
-          <div id="map" />
+          <Map />
         </main>
       </div>
     );
