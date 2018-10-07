@@ -19,15 +19,15 @@ class SideBar extends Component {
           <h3>Venues</h3>
         </div>
 
-        <div class="input-group input-group-sm mt-3 mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-sm">
+        <div className="input-group input-group-sm mt-3 mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="inputGroup-sizing-sm">
               Filter
             </span>
           </div>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             // aria-label="Filter"
             // aria-describedby="Filter"
           />
