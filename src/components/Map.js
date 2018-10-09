@@ -14,11 +14,16 @@ const MyMapComponent = withScriptjs(
   withGoogleMap(props => (
     <GoogleMap
       defaultZoom={13}
+      zoom={props.zoom}
+      center={props.center}
       defaultCenter={{ lat: 40.7413549, lng: -73.9980244 }}
     >
-      {props.isMarkerShown && (
-        <Marker position={{ lat: 40.7413549, lng: -73.9980244 }} />
-      )}
+      {props.markers &&
+        props.markers
+          .filter(marker => marker.isVisible)
+          .map((marker, idx) => (
+            <Marker key={idx} position={{ lat: marker.lat, lng: marker.lng }} />
+          ))}
     </GoogleMap>
   ))
 );
@@ -29,7 +34,7 @@ class Map extends Component {
       <main>
         <SideBar />
         <MyMapComponent
-          isMarkerShown
+          {...this.props}
           googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCSKl3k11WqXkK_gCkTNcaSfEdCt3Oo-LQ"
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `100vh` }} />}
