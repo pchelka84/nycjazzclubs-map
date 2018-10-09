@@ -7,7 +7,8 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
+  Marker,
+  InfoWindow
 } from "react-google-maps";
 
 const MyMapComponent = withScriptjs(
@@ -19,11 +20,19 @@ const MyMapComponent = withScriptjs(
       defaultCenter={{ lat: 40.7413549, lng: -73.9980244 }}
     >
       {props.markers &&
-        props.markers
-          .filter(marker => marker.isVisible)
-          .map((marker, idx) => (
-            <Marker key={idx} position={{ lat: marker.lat, lng: marker.lng }} />
-          ))}
+        props.markers.filter(marker => marker.isVisible).map((marker, idx) => (
+          <Marker
+            key={idx}
+            position={{ lat: marker.lat, lng: marker.lng }}
+            onClick={() => props.handleMarkerClick(marker)}
+          >
+            {marker.isOpen && (
+              <InfoWindow>
+                <p>Infowindow content</p>
+              </InfoWindow>
+            )}
+          </Marker>
+        ))}
     </GoogleMap>
   ))
 );
