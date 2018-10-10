@@ -44,7 +44,7 @@ const MyMapComponent = withScriptjs(
                     </React.Fragment>
                   </InfoWindow>
                 )}
-              else
+              else // test when SquareApi is available
               {marker.isOpen && (
                 <InfoWindow>
                   <React.Fragment>

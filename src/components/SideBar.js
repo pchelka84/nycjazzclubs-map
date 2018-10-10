@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./SideBar.css";
+import VenueList from "./VenueList";
 
 class SideBar extends Component {
   render() {
@@ -33,15 +34,7 @@ class SideBar extends Component {
           />
         </div>
 
-        <nav id="sidebar">
-          <ul className="list-unstyled">
-            <li>Jazz Club 1</li>
-            <li>Jazz Club 2</li>
-            <li>Jazz Club 3</li>
-            <li>Jazz Club 4</li>
-            <li>Jazz Club 5</li>
-          </ul>
-        </nav>
+        <VenueList />
       </div>
     );
   }
