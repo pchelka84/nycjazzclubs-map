@@ -1,0 +1,8 @@
+.sidebar ul {
+  color: rgb(77, 77, 77);
+  font-size: 0.7em;
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 400px;
+  cursor: pointer;
+}

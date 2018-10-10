@@ -27,14 +27,16 @@ class SideBar extends Component {
             </span>
           </div>
           <input
-            type="text"
+            type={"search"}
+            id={"search"}
+            placeholder={"Filter Venues"}
             className="form-control"
             // aria-label="Filter"
             // aria-describedby="Filter"
           />
         </div>
 
-        <VenueList />
+        <VenueList {...this.props} />
       </div>
     );
   }

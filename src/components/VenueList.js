@@ -8,7 +8,10 @@ class VenueList extends Component {
       <div>
         <nav id="sidebar">
           <ul className="list-unstyled">
-            <ListItem />
+            {this.props.venues &&
+              this.props.venues.map((venue, idx) => (
+                <ListItem key={idx} {...venue} />
+              ))}
           </ul>
         </nav>
       </div>

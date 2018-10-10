@@ -44,17 +44,15 @@ const MyMapComponent = withScriptjs(
                     </React.Fragment>
                   </InfoWindow>
                 )}
-              else // test when SquareApi is available
-              {marker.isOpen && (
-                <InfoWindow>
-                  <React.Fragment>
-                    <p>
-                      Pictures of {venueDetails.name} haven't been posted yet
-                    </p>
-                    <p>{venueDetails.name}</p>
-                  </React.Fragment>
-                </InfoWindow>
-              )}
+              {marker.isOpen &&
+                !venueDetails.bestPhoto && (
+                  <InfoWindow>
+                    <React.Fragment>
+                      <p>No picture yet</p>
+                      <p>{venueDetails.name}</p>
+                    </React.Fragment>
+                  </InfoWindow>
+                )}
             </Marker>
           );
         })}
@@ -66,7 +64,7 @@ class Map extends Component {
   render() {
     return (
       <main>
-        <SideBar />
+        <SideBar {...this.props} />
         <MyMapComponent
           {...this.props}
           googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCSKl3k11WqXkK_gCkTNcaSfEdCt3Oo-LQ"

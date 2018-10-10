@@ -3,7 +3,7 @@ import "./ListItem.css";
 
 class ListItem extends Component {
   render() {
-    return <li />;
+    return <li>{this.props.name}</li>;
   }
 }
 
