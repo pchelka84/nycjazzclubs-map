@@ -38,12 +38,23 @@ const MyMapComponent = withScriptjs(
                         src={`${venueDetails.bestPhoto.prefix}200x200${
                           venueDetails.bestPhoto.suffix
                         }`}
-                        alt={"Venue image"}
+                        alt={`"${venueDetails.name}"`}
                       />
                       <p>{venueDetails.name}</p>
                     </React.Fragment>
                   </InfoWindow>
                 )}
+              else
+              {marker.isOpen && (
+                <InfoWindow>
+                  <React.Fragment>
+                    <p>
+                      Pictures of {venueDetails.name} haven't been posted yet
+                    </p>
+                    <p>{venueDetails.name}</p>
+                  </React.Fragment>
+                </InfoWindow>
+              )}
             </Marker>
           );
         })}
