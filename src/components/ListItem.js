@@ -3,7 +3,11 @@ import "./ListItem.css";
 
 class ListItem extends Component {
   render() {
-    return <li>{this.props.name}</li>;
+    return (
+      <li onClick={() => this.props.handleListItemClick(this.props)}>
+        {this.props.name}
+      </li>
+    );
   }
 }
 

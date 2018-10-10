@@ -36,11 +36,17 @@ class App extends Component {
     });
   };
 
+  handleListItemClick = venue => {
+    const marker = this.state.markers.find(marker => marker.id === venue.id);
+    this.handleMarkerClick(marker);
+    // console.log(venue);
+  };
+
   componentDidMount() {
     SquareAPI.search({
       near: "New York, NY",
       query: "jazz",
-      limit: 10,
+      limit: 17,
       intent: "browse",
       radius: 5000
     }).then(results => {
@@ -64,7 +70,11 @@ class App extends Component {
     return (
       <div>
         <NavBar />
-        <Map {...this.state} handleMarkerClick={this.handleMarkerClick} />
+        <Map
+          {...this.state}
+          handleMarkerClick={this.handleMarkerClick}
+          handleListItemClick={this.handleListItemClick}
+        />
       </div>
     );
   }
