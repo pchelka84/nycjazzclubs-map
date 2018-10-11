@@ -12,7 +12,10 @@ class App extends Component {
       venues: [],
       markers: [],
       center: { lat: 40.7413549, lng: -73.9980244 },
-      zoom: 13
+      zoom: 13,
+      updateSuperState: obj => {
+        this.setState(obj);
+      }
     };
   }
   closeAllMarkers = () => {
@@ -74,6 +77,7 @@ class App extends Component {
           {...this.state}
           handleMarkerClick={this.handleMarkerClick}
           handleListItemClick={this.handleListItemClick}
+          closeAllMarkers={this.closeAllMarkers}
         />
       </div>
     );

@@ -38,9 +38,11 @@ const MyMapComponent = withScriptjs(
                         src={`${venueDetails.bestPhoto.prefix}200x200${
                           venueDetails.bestPhoto.suffix
                         }`}
-                        alt={`"${venueDetails.name}"`}
+                        alt={`${venueDetails.name}`}
                       />
-                      <p>{venueDetails.name}</p>
+                      <p className="text-center pt-1 font-weight-bold">
+                        {venueDetails.name}
+                      </p>
                     </React.Fragment>
                   </InfoWindow>
                 )}
@@ -48,8 +50,10 @@ const MyMapComponent = withScriptjs(
                 !venueDetails.bestPhoto && (
                   <InfoWindow>
                     <React.Fragment>
-                      <p>No picture yet</p>
-                      <p>{venueDetails.name}</p>
+                      <p className="text-center">No pictures are posted yet.</p>
+                      <p className="text-center pt-1 font-weight-bold">
+                        {venueDetails.name}
+                      </p>
                     </React.Fragment>
                   </InfoWindow>
                 )}

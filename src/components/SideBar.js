@@ -3,6 +3,33 @@ import "./SideBar.css";
 import VenueList from "./VenueList";
 
 class SideBar extends Component {
+  constructor() {
+    super();
+    this.state = {
+      query: ""
+    };
+  }
+
+  handleFilterVenues = () => {};
+
+  handleChange = e => {
+    this.props.closeAllMarkers();
+    this.setState({ query: e.target.value });
+    const markers = this.props.venues.map(venue => {
+      const isMatched = venue.name
+        .toLowerCase()
+        .includes(e.target.value.toLowerCase());
+      const marker = this.props.marker.find(marker => marker.id === venue.id);
+      if (isMatched) {
+        marker.isVisible = true;
+      } else {
+        marker.isVisible = false;
+      }
+      return marker;
+    });
+    this.props.updateSuperState({ markers: markers });
+  };
+
   render() {
     return (
       <div className="sidebar p-3 bg-light m-0">
@@ -31,6 +58,7 @@ class SideBar extends Component {
             id={"search"}
             placeholder={"Filter Venues"}
             className="form-control"
+            onChange={this.handleChange}
             // aria-label="Filter"
             // aria-describedby="Filter"
           />
