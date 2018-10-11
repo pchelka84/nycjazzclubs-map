@@ -6,11 +6,20 @@ class SideBar extends Component {
   constructor() {
     super();
     this.state = {
-      query: ""
+      query: "",
+      venues: []
     };
   }
 
-  handleFilterVenues = () => {};
+  handleFilterVenues = () => {
+    if (this.state.query.trim() !== "") {
+      const venues = this.props.venues.filter(venue =>
+        venue.name.toLowerCase().includes(this.state.query.toLowerCase())
+      );
+      return venues;
+    }
+    return this.props.venues;
+  };
 
   handleChange = e => {
     this.props.closeAllMarkers();
@@ -19,7 +28,7 @@ class SideBar extends Component {
       const isMatched = venue.name
         .toLowerCase()
         .includes(e.target.value.toLowerCase());
-      const marker = this.props.marker.find(marker => marker.id === venue.id);
+      const marker = this.props.markers.find(marker => marker.id === venue.id);
       if (isMatched) {
         marker.isVisible = true;
       } else {
@@ -64,7 +73,7 @@ class SideBar extends Component {
           />
         </div>
 
-        <VenueList {...this.props} />
+        <VenueList {...this.props} venues={this.handleFilterVenues()} />
       </div>
     );
   }
