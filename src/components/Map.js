@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./Map.css";
 
+/* global google */
+
 import SideBar from "./SideBar";
 
 import {
@@ -20,46 +22,55 @@ const MyMapComponent = withScriptjs(
       defaultCenter={{ lat: 40.7413549, lng: -73.9980244 }}
     >
       {props.markers &&
-        props.markers.filter(marker => marker.isVisible).map((marker, idx) => {
-          const venueDetails = props.venues.find(
-            venue => venue.id === marker.id
-          );
-          return (
-            <Marker
-              key={idx}
-              position={{ lat: marker.lat, lng: marker.lng }}
-              onClick={() => props.handleMarkerClick(marker)}
-            >
-              {marker.isOpen &&
-                venueDetails.bestPhoto && (
-                  <InfoWindow>
-                    <React.Fragment>
-                      <img
-                        src={`${venueDetails.bestPhoto.prefix}200x200${
-                          venueDetails.bestPhoto.suffix
-                        }`}
-                        alt={`${venueDetails.name}`}
-                      />
-                      <p className="text-center pt-1 font-weight-bold">
-                        {venueDetails.name}
-                      </p>
-                    </React.Fragment>
-                  </InfoWindow>
-                )}
-              {marker.isOpen &&
-                !venueDetails.bestPhoto && (
-                  <InfoWindow>
-                    <React.Fragment>
-                      <p className="text-center">No pictures are posted yet.</p>
-                      <p className="text-center pt-1 font-weight-bold">
-                        {venueDetails.name}
-                      </p>
-                    </React.Fragment>
-                  </InfoWindow>
-                )}
-            </Marker>
-          );
-        })}
+        props.markers
+          .filter(marker => marker.isVisible)
+          .map((marker, idx, arr) => {
+            const venueDetails = props.venues.find(
+              venue => venue.id === marker.id
+            );
+            return (
+              <Marker
+                key={idx}
+                position={{ lat: marker.lat, lng: marker.lng }}
+                onClick={() => props.handleMarkerClick(marker)}
+                animation={
+                  arr.length === 1
+                    ? google.maps.Animation.BOUNCE
+                    : google.maps.Animation.DROP
+                }
+              >
+                {marker.isOpen &&
+                  venueDetails.bestPhoto && (
+                    <InfoWindow>
+                      <React.Fragment>
+                        <img
+                          src={`${venueDetails.bestPhoto.prefix}200x200${
+                            venueDetails.bestPhoto.suffix
+                          }`}
+                          alt={`${venueDetails.name}`}
+                        />
+                        <p className="text-center pt-1 font-weight-bold">
+                          {venueDetails.name}
+                        </p>
+                      </React.Fragment>
+                    </InfoWindow>
+                  )}
+                {marker.isOpen &&
+                  !venueDetails.bestPhoto && (
+                    <InfoWindow>
+                      <React.Fragment>
+                        <p className="text-center">
+                          No pictures are posted yet.
+                        </p>
+                        <p className="text-center pt-1 font-weight-bold">
+                          {venueDetails.name}
+                        </p>
+                      </React.Fragment>
+                    </InfoWindow>
+                  )}
+              </Marker>
+            );
+          })}
     </GoogleMap>
   ))
 );
