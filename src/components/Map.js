@@ -87,6 +87,10 @@ class Map extends Component {
           containerElement={<div style={{ height: `100vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
         />
+
+        {this.props.error !== null && (
+          <div className="display-error">{this.props.error}</div>
+        )}
       </main>
     );
   }

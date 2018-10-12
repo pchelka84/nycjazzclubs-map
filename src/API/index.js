@@ -36,9 +36,18 @@ class Helper {
       )}`,
       requestData
     ).then(res => res.json());
+    // .then(response => {
+    //   if (!response.ok) {
+    //     throw Error(response.statusText);
+    //   }
+    //   return response.json();
+    // })
+    // .then(response => console.log("ok"))
+    // .catch(error => console.log(Error));
   }
 }
 export default class SquareAPI {
+  Error;
   static search(urlParams) {
     return Helper.simpleFetch("/venues/search", "GET", urlParams);
   }

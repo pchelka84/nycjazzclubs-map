@@ -13,6 +13,7 @@ class App extends Component {
       markers: [],
       center: { lat: 40.7413549, lng: -73.9980244 },
       zoom: 13,
+      error: null,
       updateSuperState: obj => {
         this.setState(obj);
       }
@@ -32,11 +33,18 @@ class App extends Component {
     this.setState({ marker: Object.assign(this.state.markers, marker) });
     const venue = this.state.venues.find(venue => venue.id === marker.id);
 
-    SquareAPI.getVenueDetails(marker.id).then(res => {
-      const newVenue = Object.assign(venue, res.response.venue);
-      this.setState({ venues: Object.assign(this.state.venues, newVenue) });
-      console.log(newVenue);
-    });
+    SquareAPI.getVenueDetails(marker.id)
+      .then(res => {
+        const newVenue = Object.assign(venue, res.response.venue);
+        this.setState({ venues: Object.assign(this.state.venues, newVenue) });
+        console.log(newVenue);
+      })
+      .catch(error => {
+        this.setState({
+          error:
+            "There was an error retrieving information from our API. Please try again later. Sorry!"
+        });
+      });
   };
 
   handleListItemClick = venue => {
@@ -52,21 +60,28 @@ class App extends Component {
       limit: 17,
       intent: "browse",
       radius: 5000
-    }).then(results => {
-      const { venues } = results.response;
-      const { center } = results.response.geocode.feature.geometry;
-      const markers = venues.map(venue => {
-        return {
-          lat: venue.location.lat,
-          lng: venue.location.lng,
-          isOpen: false,
-          isVisible: true,
-          id: venue.id
-        };
+    })
+      .then(results => {
+        const { venues } = results.response;
+        const { center } = results.response.geocode.feature.geometry;
+        const markers = venues.map(venue => {
+          return {
+            lat: venue.location.lat,
+            lng: venue.location.lng,
+            isOpen: false,
+            isVisible: true,
+            id: venue.id
+          };
+        });
+        this.setState({ venues, center, markers });
+        console.log(results);
+      })
+      .catch(error => {
+        this.setState({
+          error:
+            "There was an error retrieving information from our API. Please try again later. Sorry!"
+        });
       });
-      this.setState({ venues, center, markers });
-      console.log(results);
-    });
   }
 
   render() {
