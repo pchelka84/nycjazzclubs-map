@@ -56,22 +56,15 @@ class SideBar extends Component {
           <h3>Venues</h3>
         </div>
 
-        <div className="input-group input-group-sm mt-3 mb-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text" id="inputGroup-sizing-sm">
-              Filter
-            </span>
-          </div>
-          <input
-            type={"search"}
-            id={"search"}
-            placeholder={"Filter Venues"}
-            className="form-control"
-            onChange={this.handleChange}
-            // aria-label="Filter"
-            // aria-describedby="Filter"
-          />
-        </div>
+        <input
+          type={"search"}
+          id={"search"}
+          placeholder={"Filter Venues"}
+          className="form-control mt-3 mb-3"
+          onChange={this.handleChange}
+          // aria-label="Filter"
+          // aria-describedby="Filter"
+        />
 
         <VenueList {...this.props} venues={this.handleFilterVenues()} />
       </div>
