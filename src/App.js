@@ -77,10 +77,9 @@ class App extends Component {
         console.log(results);
       })
       .catch(error => {
-        this.setState({
-          error:
-            "There was an error retrieving information from our API. Please try again later. Sorry!"
-        });
+        alert(
+          "FourSquare API quota might be exceeded. Please try agian later."
+        );
       });
   }
 

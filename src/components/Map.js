@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./Map.css";
 
-/* global google */
-
 import SideBar from "./SideBar";
+
+/* global google */
 
 import {
   withScriptjs,
@@ -12,6 +12,11 @@ import {
   Marker,
   InfoWindow
 } from "react-google-maps";
+
+// Listening for authentication errors
+window.gm_authFailure = () => {
+  alert("Somethig went wrong with your Google API key. Please chek it.");
+};
 
 const MyMapComponent = withScriptjs(
   withGoogleMap(props => (
@@ -43,28 +48,15 @@ const MyMapComponent = withScriptjs(
                   venueDetails.bestPhoto && (
                     <InfoWindow>
                       <React.Fragment>
+                        <p className="title-infowindow text-center pt-1">
+                          {venueDetails.name}
+                        </p>
                         <img
-                          src={`${venueDetails.bestPhoto.prefix}200x200${
+                          src={`${venueDetails.bestPhoto.prefix}125x90${
                             venueDetails.bestPhoto.suffix
                           }`}
                           alt={`${venueDetails.name}`}
                         />
-                        <p className="text-center pt-1 font-weight-bold">
-                          {venueDetails.name}
-                        </p>
-                      </React.Fragment>
-                    </InfoWindow>
-                  )}
-                {marker.isOpen &&
-                  !venueDetails.bestPhoto && (
-                    <InfoWindow>
-                      <React.Fragment>
-                        <p className="text-center">
-                          No pictures are posted yet.
-                        </p>
-                        <p className="text-center pt-1 font-weight-bold">
-                          {venueDetails.name}
-                        </p>
                       </React.Fragment>
                     </InfoWindow>
                   )}
@@ -87,10 +79,6 @@ class Map extends Component {
           containerElement={<div style={{ height: `100vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
         />
-
-        {this.props.error !== null && (
-          <div className="display-error">{this.props.error}</div>
-        )}
       </main>
     );
   }
