@@ -1,9 +1,24 @@
+@import "https://fonts.googleapis.com/css?family=Poppins";
+
 #map {
   height: 100vh;
+  top: 67px;
 }
-.display-error {
-  width: 100%;
-  position: fixed;
-  top: 75px;
-  z-index: 10;
+.infowindow {
+  width: 250px;
+}
+.infowindow-image img {
+  border: none;
+  margin: 0 10px 10px 0;
+  float: left;
+  background-color: #17a2b8;
+}
+.title-infowindow {
+  font-size: 1.3em;
+  font-weight: bold;
+  font-family: Poppins, sans-serif;
+}
+.attribution {
+  font-size: 0.9em;
+  color: #666666;
 }
