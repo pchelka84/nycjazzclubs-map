@@ -15,7 +15,9 @@ import {
 
 // Listening for authentication errors
 window.gm_authFailure = () => {
-  alert("Somethig went wrong with your Google API key. Please chek it.");
+  alert(
+    "Somethig went wrong with Google API key. Please check Google API credentials."
+  );
 };
 
 const MyMapComponent = withScriptjs(
@@ -24,7 +26,7 @@ const MyMapComponent = withScriptjs(
       defaultZoom={13}
       zoom={props.zoom}
       center={props.center}
-      defaultCenter={{ lat: 40.7413549, lng: -73.9980244 }}
+      defaultCenter={{ lat: 40.7828647, lng: -73.9653551 }}
     >
       {props.markers &&
         props.markers
@@ -33,6 +35,29 @@ const MyMapComponent = withScriptjs(
             const venueDetails = props.venues.find(
               venue => venue.id === marker.id
             );
+
+            let name = venueDetails.name;
+            let address = venueDetails.location.address;
+            let city = venueDetails.location.city;
+            let state = venueDetails.location.state;
+            let zipcode = venueDetails.location.postalCode;
+            let rating = "";
+            let photo = "";
+            if (venueDetails.bestPhoto) {
+              photo = `${venueDetails.bestPhoto.prefix}150x110${
+                venueDetails.bestPhoto.suffix
+              }`;
+            } else {
+              photo = `${venueDetails.categories[0].icon.prefix}32${
+                venueDetails.categories[0].icon.suffix
+              }`;
+            }
+            if (venueDetails.rating) {
+              rating = venueDetails.rating;
+            } else {
+              rating = "Not rated yet";
+            }
+
             return (
               <Marker
                 key={idx}
@@ -45,19 +70,34 @@ const MyMapComponent = withScriptjs(
                 }
               >
                 {marker.isOpen &&
-                  venueDetails.bestPhoto && (
+                  venueDetails.location && (
                     <InfoWindow>
-                      <React.Fragment>
-                        <p className="title-infowindow text-center pt-1">
-                          {venueDetails.name}
+                      <div className="infowindow">
+                        <h3 className="title-infowindow text-center pt-1">
+                          {name}
+                        </h3>
+                        <div className="infowindow-image bg-info">
+                          <img
+                            src={photo}
+                            alt={venueDetails.categories[0].name}
+                          />
+                        </div>
+                        <p>
+                          <strong>Address:</strong> {address}
+                          <br />
+                          {city}, {state} {zipcode}
                         </p>
-                        <img
-                          src={`${venueDetails.bestPhoto.prefix}125x90${
-                            venueDetails.bestPhoto.suffix
-                          }`}
-                          alt={`${venueDetails.name}`}
-                        />
-                      </React.Fragment>
+
+                        <p>
+                          <strong>Rating:</strong> {rating}
+                        </p>
+                        <span className="attribution">
+                          Powered by
+                          <a href="https://www.foursquare.com" rel="nofollow">
+                            Foursquare
+                          </a>
+                        </span>
+                      </div>
                     </InfoWindow>
                   )}
               </Marker>
