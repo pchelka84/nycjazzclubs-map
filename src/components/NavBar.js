@@ -16,7 +16,7 @@ class NavBar extends Component {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <h3 className="navbar-brand pt-1">New York City Jazz Clubs</h3>
+          <h3 className="navbar-brand pt-1">New York City Jazz Venues</h3>
         </div>
       </nav>
     );
