@@ -13,6 +13,9 @@ class NavBar extends Component {
               e.preventDefault();
               sidebar.classList.toggle("close");
             }}
+            type="button"
+            aria-expanded="true"
+            aria-label="Toggle sidemenu"
           >
             <span className="navbar-toggler-icon" />
           </button>

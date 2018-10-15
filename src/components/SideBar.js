@@ -10,7 +10,7 @@ class SideBar extends Component {
       venues: []
     };
   }
-
+  // Filter venues
   handleFilterVenues = () => {
     if (this.state.query.trim() !== "") {
       const venues = this.props.venues.filter(venue =>
@@ -48,6 +48,7 @@ class SideBar extends Component {
             const sidebar = document.querySelector(".sidebar");
             sidebar.classList.add("close");
           }}
+          aria-label="Close"
         >
           <i className="fas fa-times-circle" />
         </span>
@@ -62,8 +63,7 @@ class SideBar extends Component {
           placeholder={"Filter Venues"}
           className="form-control mt-3 mb-3"
           onChange={this.handleChange}
-          // aria-label="Filter"
-          // aria-describedby="Filter"
+          aria-label="Filter"
         />
 
         <VenueList {...this.props} venues={this.handleFilterVenues()} />

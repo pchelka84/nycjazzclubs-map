@@ -4,7 +4,7 @@ import "./ListItem.css";
 class ListItem extends Component {
   render() {
     return (
-      <li onClick={() => this.props.handleListItemClick(this.props)}>
+      <li tabIndex="0" role="button" onClick={() => this.props.handleListItemClick(this.props)}>
         {this.props.name}
       </li>
     );
