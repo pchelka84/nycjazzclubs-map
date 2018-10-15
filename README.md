@@ -19,6 +19,9 @@ Created for Udacity Front-End Nano-Degree program. Rubric: [Udacity Project #7 R
 2. Foursqaure API
 3. Bootstrap 4
 4. Fontawesome
+5. react-google-maps
+6. [SnazzyMaps](https://snazzymaps.com/)
+7. [FlatIcon](http://www.freepik.com)
 
 ## Credits
 
