@@ -12,13 +12,13 @@ class App extends Component {
     this.state = {
       venues: [],
       markers: [],
-      center: { lat: 40.7413549, lng: -73.9980244 },
-      zoom: 13,
       updateSuperState: obj => {
         this.setState(obj);
       }
     };
   }
+
+  // Change markers state to default
   closeAllMarkers = () => {
     const markers = this.state.markers.map(marker => {
       marker.isOpen = false;
@@ -30,21 +30,20 @@ class App extends Component {
   handleMarkerClick = marker => {
     this.closeAllMarkers();
     marker.isOpen = true;
+    // Assign marker and its properties to markers
     this.setState({ markers: Object.assign(this.state.markers, marker) });
+
     const venue = this.state.venues.find(venue => venue.id === marker.id);
 
+    // Get venue details for a marker
     SquareAPI.getVenueDetails(marker.id).then(response => {
       const newVenue = Object.assign(venue, response.response.venue);
       this.setState({ venues: Object.assign(this.state.venues, newVenue) });
       console.log(newVenue);
     });
-    // .catch(error => {
-    //   alert(
-    //     "There was an error retrieving information from our API. Please try again later. Sorry! 1"
-    //   );
-    // });
   };
 
+  // Open corresponding marker when a list item is clicked
   handleListItemClick = venue => {
     const marker = this.state.markers.find(marker => marker.id === venue.id);
     this.handleMarkerClick(marker);
@@ -60,6 +59,7 @@ class App extends Component {
       intent: "browse",
       radius: 5000
     })
+      // Pull info from response
       .then(results => {
         const { venues } = results.response;
         const { center } = results.response.geocode.feature.geometry;

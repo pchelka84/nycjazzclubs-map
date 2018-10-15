@@ -16,18 +16,18 @@ import {
 // Listening for authentication errors
 window.gm_authFailure = () => {
   alert(
-    "Somethig went wrong with Google API key. Please check Google API credentials."
+    "Somethig went wrong with Google API key. Please check API credentials."
   );
 };
 
 const MyMapComponent = withScriptjs(
+  // Set map with default settings
   withGoogleMap(props => (
     <GoogleMap
       defaultZoom={13}
-      zoom={props.zoom}
-      center={props.center}
-      defaultCenter={{ lat: 40.7828647, lng: -73.9653551 }}
+      defaultCenter={{ lat: 40.755603, lng: -73.984931 }}
     >
+      // Pull out info for all visible markers
       {props.markers &&
         props.markers
           .filter(marker => marker.isVisible)
@@ -57,7 +57,7 @@ const MyMapComponent = withScriptjs(
             } else {
               rating = "Not rated yet";
             }
-
+            // Rendering markers
             return (
               <Marker
                 key={idx}
@@ -69,6 +69,7 @@ const MyMapComponent = withScriptjs(
                     : google.maps.Animation.DROP
                 }
               >
+                // Set infowindow a marker
                 {marker.isOpen &&
                   venueDetails.location && (
                     <InfoWindow>
@@ -92,7 +93,7 @@ const MyMapComponent = withScriptjs(
                           <strong>Rating:</strong> {rating}
                         </p>
                         <span className="attribution">
-                          Powered by
+                          Powered by&nbsp;
                           <a href="https://www.foursquare.com" rel="nofollow">
                             Foursquare
                           </a>
