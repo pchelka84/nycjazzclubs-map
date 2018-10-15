@@ -64,6 +64,7 @@ class SideBar extends Component {
           className="form-control mt-3 mb-3"
           onChange={this.handleChange}
           aria-label="Filter"
+          aria-placeholder="FIlter Venues"
         />
 
         <VenueList {...this.props} venues={this.handleFilterVenues()} />

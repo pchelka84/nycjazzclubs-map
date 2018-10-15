@@ -27,7 +27,7 @@ const MyMapComponent = withScriptjs(
       defaultZoom={13}
       defaultCenter={{ lat: 40.755603, lng: -73.984931 }}
     >
-      // Pull out info for all visible markers
+      {/* Pull out info for all visible markers */}
       {props.markers &&
         props.markers
           .filter(marker => marker.isVisible)
@@ -69,7 +69,7 @@ const MyMapComponent = withScriptjs(
                     : google.maps.Animation.DROP
                 }
               >
-                // Set infowindow a marker
+                {/* Set infowindow a marker */}
                 {marker.isOpen &&
                   venueDetails.location && (
                     <InfoWindow>
