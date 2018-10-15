@@ -3,6 +3,8 @@ import "./Map.css";
 
 import SideBar from "./SideBar";
 
+import { mapStyle } from "../data/MapStyle.js";
+
 /* global google */
 
 import {
@@ -26,8 +28,15 @@ const MyMapComponent = withScriptjs(
     <GoogleMap
       defaultZoom={13}
       defaultCenter={{ lat: 40.755603, lng: -73.984931 }}
+      defaultOptions={{
+        styles: mapStyle,
+        rotateControl: false,
+        zoomControl: false,
+        fullscreenControl: false
+      }}
+      disableDefaultUI
     >
-      {/* Pull out info for all visible markers */}
+      {/* Pull info out for all visible markers */}
       {props.markers &&
         props.markers
           .filter(marker => marker.isVisible)
@@ -62,6 +71,7 @@ const MyMapComponent = withScriptjs(
               <Marker
                 key={idx}
                 position={{ lat: marker.lat, lng: marker.lng }}
+                icon={marker.icon}
                 onClick={() => props.handleMarkerClick(marker)}
                 animation={
                   arr.length === 1
@@ -69,7 +79,7 @@ const MyMapComponent = withScriptjs(
                     : google.maps.Animation.DROP
                 }
               >
-                {/* Set infowindow a marker */}
+                {/* Set infowindow */}
                 {marker.isOpen &&
                   venueDetails.location && (
                     <InfoWindow>
@@ -116,7 +126,7 @@ class Map extends Component {
         <div id="map" role="application">
           <MyMapComponent
             {...this.props}
-            googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCSKl3k11WqXkK_gCkTNcaSfEdCt3Oo-LQ"
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSKl3k11WqXkK_gCkTNcaSfEdCt3Oo-LQ"
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `100vh` }} />}
             mapElement={<div style={{ height: `100%` }} />}

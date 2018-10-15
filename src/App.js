@@ -4,7 +4,9 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import Map from "./components/Map";
 import SquareAPI from "./API/";
-// import icon from "./components/images/saxophone.png";
+
+import RedPin from "./components/images/redpin.png";
+import BluePin from "./components/images/bluepin.png";
 
 class App extends Component {
   constructor() {
@@ -21,6 +23,7 @@ class App extends Component {
   // Change markers state to default
   closeAllMarkers = () => {
     const markers = this.state.markers.map(marker => {
+      marker.icon = RedPin;
       marker.isOpen = false;
       return marker;
     });
@@ -29,6 +32,7 @@ class App extends Component {
 
   handleMarkerClick = marker => {
     this.closeAllMarkers();
+    marker.icon = BluePin;
     marker.isOpen = true;
     // Assign marker and its properties to markers
     this.setState({ markers: Object.assign(this.state.markers, marker) });
@@ -69,7 +73,8 @@ class App extends Component {
             lng: venue.location.lng,
             isOpen: false,
             isVisible: true,
-            id: venue.id
+            id: venue.id,
+            icon: RedPin
           };
         });
         this.setState({ venues, center, markers });
@@ -77,7 +82,7 @@ class App extends Component {
       })
       .catch(error => {
         alert(
-          "There was an error retrieving information from FourSquare API. Please check FourSquare API credentials and try again."
+          "There was an error retrieving information from FourSquare API. Please try again later."
         );
         console.log(error);
       });
