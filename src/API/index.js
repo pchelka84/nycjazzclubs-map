@@ -4,10 +4,10 @@ class Helper {
   }
   static auth() {
     const keys = {
-      // client_id: "VMTRPTW1INEDWY1XBEBCGXQMWKT15JJOI22XOX1NX15HOKWV",
-      // client_secret: "FWESS4RSP43RA1SARGVZFPC0SJRYEG4QSUYKS345CFFF5MFY",
-      client_id: "BCHEA3CWCA2UUHLQYWBDXWJLX1REUSJYCRYKZ0S1E02QRP1H",
-      client_secret: "US5HA3RVKHK0135HM04F41ZQAKN2QUQULQSTYBVISBDJ5Q4I",
+      client_id: "VMTRPTW1INEDWY1XBEBCGXQMWKT15JJOI22XOX1NX15HOKWV",
+      client_secret: "FWESS4RSP43RA1SARGVZFPC0SJRYEG4QSUYKS345CFFF5MF",
+      // client_id: "BCHEA3CWCA2UUHLQYWBDXWJLX1REUSJYCRYKZ0S1E02QRP1H",
+      // client_secret: "US5HA3RVKHK0135HM04F41ZQAKN2QUQULQSTYBVISBDJ5Q4I",
       // client_id: "WNK32CBJWVHO5JF2Y2MXDX01ILURLGOJP0SF0WN2UBOPLHYF",
       // client_secret: "SBGE5YCLSJOGPLV4HZOA51MKGTMN2HGXMPXMO1TIQIZGRLTL",
       v: 20181001
@@ -31,27 +31,29 @@ class Helper {
   }
 
   static simpleFetch(endPoint, method, urlParams) {
-    let handleErrors = response => {
-      if (!response.ok) {
-        alert(
-          "FourSquare API daily call quota was exceeded. Sorry! Please try again later."
-        );
-      }
-      return response;
-    };
+    // let handleErrors = response => {
+    //   if (!response.ok) {
+    //     alert(
+    //       "FourSquare API daily call quota was exceeded. Sorry! Please try again later."
+    //     );
+    //   }
+    //   return response;
+    // };
 
     let requestData = {
       method,
       headers: Helper.headers()
     };
-    return fetch(
-      `${Helper.baseURL()}${endPoint}?${Helper.auth()}&${Helper.urlBuilder(
-        urlParams
-      )}`,
-      requestData
-    )
-      .then(handleErrors)
-      .then(res => res.json());
+    return (
+      fetch(
+        `${Helper.baseURL()}${endPoint}?${Helper.auth()}&${Helper.urlBuilder(
+          urlParams
+        )}`,
+        requestData
+      )
+        // .then(handleErrors)
+        .then(res => res.json())
+    );
   }
 }
 export default class SquareAPI {

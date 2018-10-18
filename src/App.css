@@ -4,3 +4,13 @@ body {
   margin: 0;
   padding: 0;
 }
+.error-display {
+  width: 100%;
+  text-align: center;
+  background-color: #fae674;
+  position: fixed;
+  top: 70px;
+  z-index: 10;
+  color: rgb(138, 83, 32);
+  padding: 15px;
+}

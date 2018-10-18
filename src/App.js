@@ -16,7 +16,8 @@ class App extends Component {
       markers: [],
       updateSuperState: obj => {
         this.setState(obj);
-      }
+      },
+      error: null
     };
   }
 
@@ -30,6 +31,16 @@ class App extends Component {
     this.setState({ markers: Object.assign(this.state.markers, markers) });
   };
 
+  // handleErrors = response => {
+  //   if (!response.ok) {
+  //     this.setState({
+  //       error:
+  //         "There was an error receiving data from FourSquare API. Please try again later.2"
+  //     });
+  //   }
+  //   return response;
+  // };
+
   handleMarkerClick = marker => {
     this.closeAllMarkers();
     marker.icon = BluePin;
@@ -40,11 +51,18 @@ class App extends Component {
     const venue = this.state.venues.find(venue => venue.id === marker.id);
 
     // Get venue details for a marker
-    SquareAPI.getVenueDetails(marker.id).then(response => {
-      const newVenue = Object.assign(venue, response.response.venue);
-      this.setState({ venues: Object.assign(this.state.venues, newVenue) });
-      console.log(newVenue);
-    });
+    SquareAPI.getVenueDetails(marker.id)
+      .then(response => {
+        const newVenue = Object.assign(venue, response.response.venue);
+        this.setState({ venues: Object.assign(this.state.venues, newVenue) });
+        console.log(newVenue);
+      })
+      .catch(error => {
+        this.setState({
+          error:
+            "There was an error receiving data from FourSquare API. Please try again later.2"
+        });
+      });
   };
 
   // Open corresponding marker when a list item is clicked
@@ -81,17 +99,26 @@ class App extends Component {
         console.log(results);
       })
       .catch(error => {
-        alert(
-          "There was an error retrieving information from FourSquare API. Please try again later."
-        );
-        console.log(error);
+        this.setState({
+          error:
+            "There was an error receiving data from FourSquare API. Please try again later."
+        });
       });
+    // .catch(error => {
+    //   alert(
+    //     "There was an error retrieving information from FourSquare API. Please try again later."
+    //   );
+    //   console.log(error);
+    // });
   }
 
   render() {
     return (
       <div>
         <NavBar />
+        {this.state.error !== null && (
+          <div className="error-display">{this.state.error}</div>
+        )}
         <Map
           {...this.state}
           handleMarkerClick={this.handleMarkerClick}
