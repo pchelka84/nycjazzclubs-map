@@ -104,7 +104,11 @@ const MyMapComponent = withScriptjs(
                         </p>
                         <span className="attribution">
                           Powered by&nbsp;
-                          <a href="https://www.foursquare.com" rel="nofollow">
+                          <a
+                            href="https://www.foursquare.com"
+                            rel="nofollow noopener noreferrer"
+                            target="_blank"
+                          >
                             Foursquare
                           </a>
                         </span>
