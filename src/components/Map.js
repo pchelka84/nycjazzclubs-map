@@ -15,13 +15,6 @@ import {
   InfoWindow
 } from "react-google-maps";
 
-// Listening for authentication errors
-window.gm_authFailure = () => {
-  alert(
-    "Somethig went wrong with Google API key. Please check API credentials."
-  );
-};
-
 const MyMapComponent = withScriptjs(
   // Set map with default settings
   withGoogleMap(props => (
@@ -121,6 +114,12 @@ const MyMapComponent = withScriptjs(
     </GoogleMap>
   ))
 );
+
+window.gm_authFailure = () => {
+  alert(
+    "Somethig went wrong with Google API key. Please check API credentials."
+  );
+};
 
 class Map extends Component {
   render() {

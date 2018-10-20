@@ -22,3 +22,13 @@
   font-size: 0.9em;
   color: #666666;
 }
+.error-message {
+  width: 100%;
+  text-align: center;
+  background-color: #fae674;
+  position: fixed;
+  top: 70px;
+  z-index: 10;
+  color: rgb(138, 83, 32);
+  padding: 15px;
+}

@@ -4,6 +4,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import Map from "./components/Map";
 import SquareAPI from "./API/";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 import RedPin from "./components/images/redpin.png";
 import BluePin from "./components/images/bluepin.png";
@@ -104,12 +105,6 @@ class App extends Component {
             "There was an error receiving data from FourSquare API. Please try again later."
         });
       });
-    // .catch(error => {
-    //   alert(
-    //     "There was an error retrieving information from FourSquare API. Please try again later."
-    //   );
-    //   console.log(error);
-    // });
   }
 
   render() {
@@ -119,12 +114,14 @@ class App extends Component {
         {this.state.error !== null && (
           <div className="error-display">{this.state.error}</div>
         )}
-        <Map
-          {...this.state}
-          handleMarkerClick={this.handleMarkerClick}
-          handleListItemClick={this.handleListItemClick}
-          closeAllMarkers={this.closeAllMarkers}
-        />
+        <ErrorBoundary>
+          <Map
+            {...this.state}
+            handleMarkerClick={this.handleMarkerClick}
+            handleListItemClick={this.handleListItemClick}
+            closeAllMarkers={this.closeAllMarkers}
+          />
+        </ErrorBoundary>
       </div>
     );
   }
